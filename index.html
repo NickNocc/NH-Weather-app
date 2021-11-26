@@ -13,14 +13,18 @@
     <header id="titleHead" class="text-white bg-gradient bg-primary">
         <h1>Weather Dashboard</h1>
     </header>
-    <div class="container row">
-        <div class="column col-4">   
+    <div class="container row col-12" id="bigBox">
+        <div class="column col-3">   
             <h2 class="">Search for a City:</h1>
             <input type="search" id="citySearch" placeholder="Los Angeles">
             <button type="button" class="btn btn-info" >Search</button>    
         </div>
-        <div class="column border border-primary col-8">
+        <div class="column border border-primary col-9">
             <h1>test</h1>
+        </div>
+        <div class="col-3" id="recentSearches"></div>
+        <div class="col-9 row" id="cardHolder">
+            <h2>5-Day Forecast: </h2>
         </div>
     </div>
     
