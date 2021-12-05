@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <header id="titleHead" class="text-white bg-gradient bg-primary">
+    <header id="titleHead" class="container-fluid text-center text-white bg-dark p-2">
         <h1>Weather Dashboard</h1>
     </header>
     <div class="container row col-12" id="bigBox">
@@ -20,7 +20,12 @@
             <button type="button" class="btn btn-info" >Search</button>    
         </div>
         <div class="column border border-primary col-9">
-            <h1>test</h1>
+            <h1 id="cityName"></h1>
+            <img id="cityIcon" alt="">
+            <p id="temp"></p>
+            <p id="humidity"></p>
+            <p id="windSpeed"></p>
+            <p id="UV-Index"></p>
         </div>
         <div class="col-3" id="recentSearches"></div>
         <div class="col-9 row" id="cardHolder">
