@@ -24,12 +24,11 @@ var getWeather = function(cityName) {
             dailyForecast(data);
         })} else {
           alert("Error: " + response.statusText);
-        })
-      .catch(function(error) {
-        alert("Unable to connect to OpenWeather");
-      });
-
-};
+        }
+})
+.catch(function(error) {
+  alert("Unable to connect to OpenWeather");
+})};
 
 var dailyForecast = function(data) {
   var cityName = data.name;
