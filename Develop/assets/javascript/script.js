@@ -5,7 +5,7 @@ var oneDayTemp = $("#temp");
 var oneDayHumidity = $("#humidity");
 var oneDayWindSpeend = $("#windspeed");
 var oneDayUV = $("#UV-Index");
-var cityName = "";
+var cityNameMaster = "";
 
 
 var getWeather = function(cityName) {
@@ -49,7 +49,7 @@ var dailyForecast = function(data) {
     // City name + Date
     // temp, wind, humidity, uv index
   getUV(latitude, longitude);
-  fiveDayRequest(currentCity);
+  fiveDayRequest(latitude, longitude);
 }
 
 var getUV = function(lat, long) {
@@ -83,16 +83,16 @@ var getUV = function(lat, long) {
 alert("Unable to connect to OpenWeather");
 })};
 
-var fiveDayRequest = function(cityName) {
-  console.log(cityName);
-  let fiveDayApi = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityName + "&appid=" + api_Key;
+var fiveDayRequest = function(lat, long) {
+  let fiveDayApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&exclude=hourly,minutely&lon=" + long + "&appid=" + api_Key;
+  console.log("tyest")
   fetch(fiveDayApi)
   .then(function(response) {
     // request was successful
     if (response.ok) {
       response.json().then(function(data) {
+        console.log(data);
         for (var i = 0; i < 5; i++) {
-          console.log(data);
         }
 
     })} else {
