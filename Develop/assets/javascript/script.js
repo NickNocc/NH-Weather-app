@@ -5,7 +5,6 @@ var oneDayTemp = $("#temp");
 var oneDayHumidity = $("#humidity");
 var oneDayWindSpeend = $("#windspeed");
 var oneDayUV = $("#UV-Index");
-var cityNameMaster = "";
 
 
 var getWeather = function(cityName) {
@@ -85,7 +84,6 @@ alert("Unable to connect to OpenWeather");
 
 var fiveDayRequest = function(lat, long) {
   let fiveDayApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&exclude=hourly,minutely&lon=" + long + "&appid=" + api_Key + "&cnt=5&units=imperial";
-  console.log("tyest")
   fetch(fiveDayApi)
   .then(function(response) {
     // request was successful
@@ -105,17 +103,41 @@ var fiveDayForecast = function(data) {
     var fiveDayDate = (new Date(data.daily[i].dt * 1000))
     var fiveDayTemp = Math.round(data.daily[i].feels_like.day) + "°F";
     var fiveDayDay = fiveDayDate.getDate();
-    var fiveDayMonth = fiveDayDate.getMonth();
+    var fiveDayMonth = fiveDayDate.getMonth() + 1;
     var fiveDayYear = fiveDayDate.getFullYear();
     var fiveDayIcon = data.daily[i].weather[0].icon;
+    var fiveDayIconDescription = data.daily[i].weather[0].description;
     var fiveDayWindSpeed = data.daily[i].wind_speed + " MPH";
     var fiveDayHumidity = data.daily[i].humidity + "%";
-    $("#cardHolder").append("<div class='bg-primary col-2 mx-2' id=fiveCards> <h3>" + fiveDayMonth + "/" + fiveDayDay + "/" + fiveDayYear + "</h3> </br> <p>Temp: " + fiveDayTemp + "</p> </br> <p>Wind:"  + fiveDayWindSpeed +"</p> </br><p>Humidity: " + fiveDayHumidity + "</p> </br>")
+    $("#cardHolder").append(
+      "<div class='bg-primary col-2 mx-2' id=fiveCards> <h3>"
+       + fiveDayMonth +
+        "/"
+         + fiveDayDay + 
+         "/" 
+         + fiveDayYear +
+       "</h3> <img id="
+        + fiveDayIcon + 
+        " alt="
+        + fiveDayIconDescription + 
+        " src=https://openweathermap.org/img/wn/" + fiveDayIcon +
+         "@2x.png> </br> <p>Temp: "
+        + fiveDayTemp +
+         "</p> </br> <p>Wind:"
+         + fiveDayWindSpeed +
+         "</p> </br><p>Humidity: "
+          + fiveDayHumidity +
+           "</p> </br>")
 };
-    // Temp, wind, and humidity
 }
+var recentSearches = function(cityName) {
+  var $searchList = $("#recentSearches");
+  $searchList.append(
+    "<div class=`lastSearches`><span class=`bg-secondary`><p style=text-align:center>" + cityName + "</p></span> </div>");
+};
 
 $(".btn").on("click",  function() {
     var cityName = $("#citySearch").val();
+    recentSearches(cityName);
     getWeather(cityName);
 });

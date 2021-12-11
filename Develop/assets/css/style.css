@@ -2,12 +2,30 @@
     --primary: #4b03c06c;
 };
 
+input{
+    width: 100%;
+};
+
+button {
+    width: 100%;
+}
+
 #cardHolder {
     float: right;
 };
 
 #bigBox {
     margin: 0, auto;
+}
+
+#fiveCards {
+    min-width: fit-content;
+    margin-bottom: 5px;
+}
+
+
+.lastSearches {
+    text-align: center
 }
 
 .badge-success {
