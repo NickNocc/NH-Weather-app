@@ -39,9 +39,9 @@ var dailyForecast = function(data) {
   var day = currentDate.getDate();
   var month = currentDate.getMonth() + 1;
   var year = currentDate.getFullYear();
-  var dayTemp = Math.round(data.main.temp);
-  var dayWind = Math.round(data.wind.speed);
-  var dayHumidity = Math.round(data.main.humidity);
+  var dayTemp = Math.round(data.main.temp) + "°F";
+  var dayWind = Math.round(data.wind.speed) + " MPH";
+  var dayHumidity = Math.round(data.main.humidity) + "%";
   oneDayTemp.html("Temperature: " + dayTemp + " </br></br> Humidity: " + dayHumidity + " </br></br> Wind Speed: " + dayWind + "</br>")
   cityIcon.attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
   cityIcon.attr("alt", data.weather[0].description);
@@ -84,17 +84,14 @@ alert("Unable to connect to OpenWeather");
 })};
 
 var fiveDayRequest = function(lat, long) {
-  let fiveDayApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&exclude=hourly,minutely&lon=" + long + "&appid=" + api_Key;
+  let fiveDayApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&exclude=hourly,minutely&lon=" + long + "&appid=" + api_Key + "&cnt=5&units=imperial";
   console.log("tyest")
   fetch(fiveDayApi)
   .then(function(response) {
     // request was successful
     if (response.ok) {
       response.json().then(function(data) {
-        console.log(data);
-        for (var i = 0; i < 5; i++) {
-        }
-
+        fiveDayForecast(data);
     })} else {
       alert("Error: " + response.statusText);
     }
@@ -104,11 +101,16 @@ var fiveDayRequest = function(lat, long) {
 })};
 
 var fiveDayForecast = function(data) {
-  var fiveDayTemp = Math.round(data.main.temp);
-  var fiveDayWind = Math.round(data.wind.speed);
-  var fiveDayHumidity = Math.round(data.main.humidity);
     for (var i = 0; i < 5; i++) {
-    $("#cardHolder").append("<div class='bg-primary col-2 mx-2' id=fiveCards><h3>Date</h3> </br> <p>Temp: " + fiveDayTemp + "F</p> </br> <p>Wind:"  + fiveDayWind +"mph </p> </br><p>Humidity: " + fiveDayHumidity + "%</p> </br>")
+    var fiveDayDate = (new Date(data.daily[i].dt * 1000))
+    var fiveDayTemp = Math.round(data.daily[i].feels_like.day) + "°F";
+    var fiveDayDay = fiveDayDate.getDate();
+    var fiveDayMonth = fiveDayDate.getMonth();
+    var fiveDayYear = fiveDayDate.getFullYear();
+    var fiveDayIcon = data.daily[i].weather[0].icon;
+    var fiveDayWindSpeed = data.daily[i].wind_speed + " MPH";
+    var fiveDayHumidity = data.daily[i].humidity + "%";
+    $("#cardHolder").append("<div class='bg-primary col-2 mx-2' id=fiveCards> <h3>" + fiveDayMonth + "/" + fiveDayDay + "/" + fiveDayYear + "</h3> </br> <p>Temp: " + fiveDayTemp + "</p> </br> <p>Wind:"  + fiveDayWindSpeed +"</p> </br><p>Humidity: " + fiveDayHumidity + "</p> </br>")
 };
     // Temp, wind, and humidity
 }
