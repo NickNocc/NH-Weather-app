@@ -112,7 +112,7 @@ var fiveDayForecast = function(data) {
     var fiveDayWindSpeed = data.daily[i].wind_speed + " MPH";
     var fiveDayHumidity = data.daily[i].humidity + "%";
     $("#cardHolder").append(
-      "<div class='bg-primary col-2 mx-2' id=fiveCards> <h3>"
+      "<div class='bg-secondary col-2 mx-2' id=fiveCards> <h3>"
        + fiveDayMonth +
         "/"
          + fiveDayDay + 
@@ -164,17 +164,6 @@ var fiveDayRemove = function() {
   }
 };
 
-recentSearches();
-  if (recentArr.length > 0) {
-      getWeather(searchHistory[searchHistory.length - 1]);
-  }
-
-// $("#recentSearches").on("click", function() {
-//   let recentText = $(this).children("p").text().trim();
-//   console.log(recentText);
-//   console.log("test");
-// });
-
 
 $(".btn").on("click",  function() {
   fiveDayRemove();
@@ -187,9 +176,7 @@ $(".btn").on("click",  function() {
 
 var loadSearches = function() {
   let loadedSearches = JSON.parse(localStorage.getItem("search"));
-  console.log(recentArr);
   recentArr = loadedSearches;
-  console.log(recentArr);
   recentSearches();
 }
 loadSearches();
