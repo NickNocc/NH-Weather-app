@@ -16,11 +16,8 @@ button {
 
 #fiveCards {
     min-width: fit-content;
+    max-width: 0%;
     margin-bottom: 5px;
-}
-
-#recentSearches {
-    justify-content: space-between;
 }
 
 .text-white {
@@ -29,6 +26,24 @@ button {
 
 #citySearch {
     border-radius: .25rem;
+}
+
+.searchBox {
+    max-width: 19%;
+}
+
+.remove-all-margin{
+    margin:0 ! important;
+    min-width: 100%;
+}
+
+#recentSearches {
+    margin: 0%;
+    max-width: 19%;
+}
+
+#searches {
+    width: 100%;
 }
 
 .lastSearches {
@@ -50,3 +65,4 @@ button {
     vertical-align: baseline;
     border-radius: 0.25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+};

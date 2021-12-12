@@ -13,15 +13,15 @@
     <header id="titleHead" class="container-fluid text-center text-white bg-dark p-2">
         <h1>Weather Dashboard</h1>
     </header>
-    <div class="container row col-12" id="bigBox">
-        <div class="column col-3 searchBox">   
+    <div class="container row col-12 remove-all-margin" id="bigBox">
+        <div class="column col-3 col-md-6 searchBox">   
             <h2 class="">Search for a City:</h1>
             <input type="search" id="citySearch" placeholder="Los Angeles">
             <button type="button " class="btn btn-info" >Search</button> </br>
             <button type="button " class="bg-danger" style="margin-top: 3px; border-radius: 0.25rem;">Clear Search History</button>
 
         </div>
-        <div class="column border border-primary col-9">
+        <div class="column border border-primary col-md-6 col-9" id="cityHolder">
             <h1 id="cityName"></h1>
             <img id="cityIcon" alt="">
             <p id="temp"></p>
@@ -29,9 +29,11 @@
             <p id="windSpeed"></p>
             <p id="UV-Index"></p>
         </div>
-        
-        <div class="col-3 container" id="recentSearches"></div>
-        <div class="col-9 row" id="cardHolder">
+        <h2>Recent Searches:</h2>
+
+        <div class="col-3 col-md-4 container" id="recentSearches">
+        </div>
+        <div class="col-9 col-md-8 row" id="cardHolder">
             <h2>5-Day Forecast: </h2>
         </div>
     </div>

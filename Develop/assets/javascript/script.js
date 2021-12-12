@@ -112,7 +112,7 @@ var fiveDayForecast = function(data) {
     var fiveDayWindSpeed = data.daily[i].wind_speed + " MPH";
     var fiveDayHumidity = data.daily[i].humidity + "%";
     $("#cardHolder").append(
-      "<div class='bg-secondary col-2 mx-2' id=fiveCards> <h3>"
+      "<div class='bg-secondary col-2 col-md-2 mx-2' id=fiveCards> <h3>"
        + fiveDayMonth +
         "/"
          + fiveDayDay + 
