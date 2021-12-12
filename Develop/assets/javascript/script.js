@@ -148,9 +148,11 @@ var recentSearches = function() {
     recentCity.attr("type", "text");
     recentCity.attr("readonly", true);
     recentCity.attr("class", "bg-secondary rounded text-white");
+    recentCity.attr("style", "text-align: center")
+    recentCity.attr("id", "searches")
     recentCity.val(recentArr[i]);
     recentCity.on("click", function() {
-      let recentValue = recentCity.val();
+      let recentValue = $(this).val();
       fiveDayRemove();
       getWeather(recentValue);
     })
@@ -169,10 +171,17 @@ $(".btn").on("click",  function() {
   fiveDayRemove();
   var cityName = $("#citySearch").val();
   recentArr.push(cityName);
-  recentSearches(cityName);
   getWeather(cityName);
+  // recentSearches(cityName);
   localStorage.setItem("search", JSON.stringify(recentArr));
+  loadSearches();
 });
+
+$(".bg-danger").on("click", function() {
+  recentArr.forEach(element => $("#searches").remove());
+  recentArr = [];
+  localStorage.setItem("search", JSON.stringify(recentArr));
+})
 
 var loadSearches = function() {
   let loadedSearches = JSON.parse(localStorage.getItem("search"));

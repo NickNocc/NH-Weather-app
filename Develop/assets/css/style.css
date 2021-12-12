@@ -14,10 +14,6 @@ button {
     float: right;
 };
 
-#bigBox {
-    margin: 0, auto;
-}
-
 #fiveCards {
     min-width: fit-content;
     margin-bottom: 5px;
@@ -25,6 +21,14 @@ button {
 
 #recentSearches {
     justify-content: space-between;
+}
+
+.text-white {
+    margin: 1px;
+}
+
+#citySearch {
+    border-radius: .25rem;
 }
 
 .lastSearches {
