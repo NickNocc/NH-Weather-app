@@ -23,6 +23,10 @@ button {
     margin-bottom: 5px;
 }
 
+#recentSearches {
+    justify-content: space-between;
+}
+
 .lastSearches {
     text-align: center
 }

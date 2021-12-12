@@ -5,6 +5,8 @@ var oneDayTemp = $("#temp");
 var oneDayHumidity = $("#humidity");
 var oneDayWindSpeend = $("#windspeed");
 var oneDayUV = $("#UV-Index");
+var recentBox = $("#recentSearches");
+var recentArr = [];
 
 
 var getWeather = function(cityName) {
@@ -131,26 +133,63 @@ var fiveDayForecast = function(data) {
   };
 };
 
-var recentSearches = function(cityName) {
-  var $searchList = $("#recentSearches");
-  $searchList.append(
-    "<div class=lastSearches><button class='btn2 bg-secondary rounded'><p class='text-light recentButton' style=text-align:center>"
-    + cityName +
-    "</p></button></div>");
+var recentSearches = function() {
+  // var $searchList = $("#recentSearches");
+  // $searchList.append(
+  //   "<div class=lastSearches><button class='btn2 bg-secondary rounded'><p class='text-light recentButton' style=text-align:center>"
+  //   + cityName +
+  //   "</p></button></div>");
+  recentBox.html("");
+  if (!recentArr){
+    recentArr = [];
+  }
+  for (let i = 0; i < recentArr.length; i++) {
+    var recentCity = $("<input class=mt-1></input>");
+    recentCity.attr("type", "text");
+    recentCity.attr("readonly", true);
+    recentCity.attr("class", "bg-secondary rounded text-white");
+    recentCity.val(recentArr[i]);
+    recentCity.on("click", function() {
+      let recentValue = recentCity.val();
+      fiveDayRemove();
+      getWeather(recentValue);
+    })
+    recentBox.append(recentCity);
+    }
 };
 
-$("#recentSearches").on("click", function() {
-  let recentText = $(this).find("p").text().trim();
-  console.log(recentText);
-  console.log("test");
-});
+var fiveDayRemove = function() {
+  for (let i = 0; i < 5; i++) {
+    $("#fiveCards").remove();
+  }
+};
+
+recentSearches();
+  if (recentArr.length > 0) {
+      getWeather(searchHistory[searchHistory.length - 1]);
+  }
+
+// $("#recentSearches").on("click", function() {
+//   let recentText = $(this).children("p").text().trim();
+//   console.log(recentText);
+//   console.log("test");
+// });
 
 
 $(".btn").on("click",  function() {
-  for (let i = 0; i < 5; i++) {
-  $("#fiveCards").remove();
-  }
+  fiveDayRemove();
   var cityName = $("#citySearch").val();
+  recentArr.push(cityName);
   recentSearches(cityName);
   getWeather(cityName);
+  localStorage.setItem("search", JSON.stringify(recentArr));
 });
+
+var loadSearches = function() {
+  let loadedSearches = JSON.parse(localStorage.getItem("search"));
+  console.log(recentArr);
+  recentArr = loadedSearches;
+  console.log(recentArr);
+  recentSearches();
+}
+loadSearches();
