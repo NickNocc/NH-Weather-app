@@ -128,16 +128,29 @@ var fiveDayForecast = function(data) {
          "</p> </br><p>Humidity: "
           + fiveDayHumidity +
            "</p> </br>")
+  };
 };
-}
+
 var recentSearches = function(cityName) {
   var $searchList = $("#recentSearches");
   $searchList.append(
-    "<div class=`lastSearches`><span class=`bg-secondary`><p style=text-align:center>" + cityName + "</p></span> </div>");
+    "<div class=lastSearches><button class='btn2 bg-secondary rounded'><p class='text-light recentButton' style=text-align:center>"
+    + cityName +
+    "</p></button></div>");
 };
 
+$("#recentSearches").on("click", function() {
+  let recentText = $(this).find("p").text().trim();
+  console.log(recentText);
+  console.log("test");
+});
+
+
 $(".btn").on("click",  function() {
-    var cityName = $("#citySearch").val();
-    recentSearches(cityName);
-    getWeather(cityName);
+  for (let i = 0; i < 5; i++) {
+  $("#fiveCards").remove();
+  }
+  var cityName = $("#citySearch").val();
+  recentSearches(cityName);
+  getWeather(cityName);
 });
