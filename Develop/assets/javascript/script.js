@@ -123,7 +123,7 @@ var fiveDayForecast = function(data) {
         " src=https://openweathermap.org/img/wn/" + fiveDayIcon +
          "@2x.png> </br> <p>Temp: "
         + fiveDayTemp +
-         "</p> </br> <p>Wind:"
+         "</p> </br> <p>Wind: "
          + fiveDayWindSpeed +
          "</p> </br><p>Humidity: "
           + fiveDayHumidity +
