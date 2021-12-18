@@ -10,6 +10,14 @@ button {
     width: 100%;
 }
 
+span {
+    height: 19px;
+}
+
+h2 {
+    width: 100%;
+}
+
 #cardHolder {
     float: right;
 };

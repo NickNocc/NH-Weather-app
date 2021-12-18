@@ -31,7 +31,6 @@ var getWeather = function(cityName) {
 
 
 var dailyForecast = function(data) {
-  var currentCity = data.name;
   var longitude = Math.round(data.coord.lon);
   var latitude = Math.round(data.coord.lat);
   var cityName = data.name;
@@ -54,9 +53,8 @@ var dailyForecast = function(data) {
 }
 
 var getUV = function(lat, long) {
-
-  // format the github api url
   var UVURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + long + "&appid=" + api_Key + "&cnt=1";
+  // format the github api url
 
   // make a get request to url
   fetch(UVURL)
@@ -65,10 +63,10 @@ var getUV = function(lat, long) {
       if (response.ok) {
         response.json().then(function(data) {
           var UV_Index = $("span");
-          if (data[0].value < 4 ) {
+          if (data[0].value < 2 ) {
             UV_Index.attr("class", "badge badge-success");
         }
-        else if (data[0].value < 8) {
+        else if (data[0].value < 5) {
             UV_Index.attr("class", "badge badge-warning");
         }
         else {
@@ -134,11 +132,6 @@ var fiveDayForecast = function(data) {
 };
 
 var recentSearches = function() {
-  // var $searchList = $("#recentSearches");
-  // $searchList.append(
-  //   "<div class=lastSearches><button class='btn2 bg-secondary rounded'><p class='text-light recentButton' style=text-align:center>"
-  //   + cityName +
-  //   "</p></button></div>");
   recentBox.html("");
   if (!recentArr){
     recentArr = [];
