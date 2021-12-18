@@ -10,3 +10,6 @@ Tired of looking at online weather apps and getting overwhelmed by all of the su
   
 GitHub: https://github.com/NickNocc </br>
 Email: haretakis4@gmail.com
+
+## Live Server: https://nicknocc.github.io/NH-Weather-app/
+[[/Develop/assets/images/live-server.png]]
