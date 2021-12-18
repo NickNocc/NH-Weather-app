@@ -12,4 +12,4 @@ GitHub: https://github.com/NickNocc </br>
 Email: haretakis4@gmail.com
 
 ## Live Server: https://nicknocc.github.io/NH-Weather-app/
-* [Screenshot](Develop/assets/images/live-server.png)
+* ![](Develop/assets/images/live-server.png)
