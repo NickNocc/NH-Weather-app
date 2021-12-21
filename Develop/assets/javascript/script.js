@@ -31,7 +31,7 @@ var getWeather = function(cityName) {
 
 
 var dailyForecast = function(data) {
-  var longitudes = Math.round(data.coord.lon);
+  var longitude = Math.round(data.coord.lon);
   var latitude = Math.round(data.coord.lat);
   var cityName = data.name;
   var weatherIcon = data.weather[0].icon
